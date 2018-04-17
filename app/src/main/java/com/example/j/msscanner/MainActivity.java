@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
     @Override
     public void onClick(View view) {
             ClipboardManager cm = (ClipboardManager)getApplicationContext().getSystemService(Context.CLIPBOARD_SERVICE);
-            ClipData clip = ClipData.newPlainText("label", "https://goo.gl/EdACzu");
+            ClipData clip = ClipData.newPlainText("label", "https://goo.gl/oBo7hZ");
             cm.setPrimaryClip(clip);
             Toast.makeText(getApplicationContext(), "Link Copied!", Toast.LENGTH_SHORT).show();
             }
