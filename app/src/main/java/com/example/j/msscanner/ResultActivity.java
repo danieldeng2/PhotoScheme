@@ -1,5 +1,6 @@
 package com.example.j.msscanner;
 
+import android.net.SSLCertificateSocketFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -11,7 +12,15 @@ import android.widget.ListView;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+
+import java.security.GeneralSecurityException;
+import java.security.SecureRandom;
 import java.util.ArrayList;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
 
 public class ResultActivity extends AppCompatActivity {
     public static final String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36";
@@ -36,9 +45,11 @@ public class ResultActivity extends AppCompatActivity {
             doc = doc1 =  Jsoup.parse("");
             try {
                 Log.v("diBG", query[0]);
-                doc = Jsoup.connect("https://www.google.co.uk/search?q=" + query[0] + " filetype:pdf&filter=0").userAgent(USER_AGENT).get();
-                doc1 = Jsoup.connect("https://www.google.co.uk/search?q=" + query[0] + " filetype:pdf  site:physicsandmathstutor.com&filter=0").userAgent(USER_AGENT).get();
+                doc = Jsoup.connect("https://www.google.com/search?q=" + query[0] + "%20filetype:pdf&filter=0").userAgent(USER_AGENT).ignoreHttpErrors(false).get();
+                doc1 = Jsoup.connect("https://www.google.co.uk/search?q=" + query[0] + "%20filetype:pdf%20%20site:physicsandmathstutor.com&filter=0").userAgent(USER_AGENT).get();
+
             } catch (Exception e) {
+                e.printStackTrace();
                 ConnectionError = true;
             }
             return null;
