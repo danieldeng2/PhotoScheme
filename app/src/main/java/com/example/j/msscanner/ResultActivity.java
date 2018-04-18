@@ -46,7 +46,7 @@ public class ResultActivity extends AppCompatActivity {
             try {
                 Log.v("diBG", query[0]);
                 doc = Jsoup.connect("https://www.google.com/search?q=" + query[0] + "%20filetype:pdf&filter=0").userAgent(USER_AGENT).ignoreHttpErrors(false).get();
-                doc1 = Jsoup.connect("https://www.google.co.uk/search?q=" + query[0] + "%20filetype:pdf%20%20site:physicsandmathstutor.com&filter=0").userAgent(USER_AGENT).get();
+                doc1 = Jsoup.connect("https://www.google.com/search?q=" + query[0] + "%20filetype:pdf%20%20site:physicsandmathstutor.com&filter=0").userAgent(USER_AGENT).get();
 
             } catch (Exception e) {
                 e.printStackTrace();
